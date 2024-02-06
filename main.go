@@ -1,9 +1,16 @@
 package main
 
 import (
-	"fmt"
+	"log"
+	"net/http"
+	"github.com/gorilla/mux"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"github.com/tyler1836/bookstore-go/pkg/routes"
 )
 
 func main() {
-	fmt.Println("Hello World")
+	r := mux.NewRouter()
+	routes.RegisterBookStoreRoutes(r)
+	http.Handle("/", r)
+	log.Fatal(http.ListenAndServe("localhost:9000", r))
 }
