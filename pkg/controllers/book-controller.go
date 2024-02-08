@@ -43,7 +43,7 @@ func GetBookById(w http.ResponseWriter, r *http.Request) {
 
 func CreateBook(w http.ResponseWriter, r *http.Request) {
 	Book := &models.Book{}
-	utils.ParseBody(r, CreateBook)
+	utils.ParseBody(r, Book)
 	b := Book.CreateBook()
 	res, _ := json.Marshal(b)
 	w.Header().Set("Content-Type", "pkglication/json")
